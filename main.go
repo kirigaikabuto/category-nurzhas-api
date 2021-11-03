@@ -63,6 +63,23 @@ func main() {
 		log.Fatal(err)
 		return
 	}
+
+	chatIdsStore, err := category_nurzhas_store.NewPostgresChatIdStore(postgreConfig)
+	if err != nil {
+		log.Fatal(err)
+		return
+	}
+	telegramBotStore, err := category_nurzhas_store.NewPostgresTelegramStore(postgreConfig)
+	if err != nil {
+		log.Fatal(err)
+		return
+	}
+	telegramBotService := category_nurzhas_store.NewTelegramService("", telegramBotStore, chatIdsStore)
+	if err != nil {
+		log.Fatal(err)
+		return
+	}
+	telegramHttpEndpoints := category_nurzhas_store.NewTelegramBotHttpEndpoints(setdata_common.NewCommandHandler(telegramBotService))
 	service := category_nurzhas_store.NewCategoryService(store, s3)
 	ch := setdata_common.NewCommandHandler(service)
 	httpEndpoints := category_nurzhas_store.NewHttpEndpoints(ch)
@@ -76,6 +93,10 @@ func main() {
 	router.Methods("GET").Path("/category/list").HandlerFunc(httpEndpoints.MakeListCategoryEndpoint())
 
 	router.Methods("POST").Path("/users/register").HandlerFunc(usersHttpEndpoints.MakeRegisterUserEndpoint())
+
+	router.Methods("POST").Path("/telegram").HandlerFunc(telegramHttpEndpoints.MakeCreateTelegramBotEndpoint())
+	router.Methods("GET").Path("/telegram").HandlerFunc(telegramHttpEndpoints.MakeListTelegramBotEndpoint())
+	router.Methods("POST").Path("/telegram/message").HandlerFunc(telegramHttpEndpoints.MakeSendMessageEndpoint())
 
 	fmt.Println("api is running on port " + port)
 	err = http.ListenAndServe(":"+port, router)

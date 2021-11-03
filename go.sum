@@ -49,6 +49,8 @@ github.com/kirigaikabuto/category-nurzhas-store v0.0.0-20211014085711-d1a3b92143
 github.com/kirigaikabuto/category-nurzhas-store v0.0.0-20211014085711-d1a3b921437d/go.mod h1:/04VStcTTyO9KGLM5MVS/ebzAbuSljs1Sh42nBjDQEI=
 github.com/kirigaikabuto/category-nurzhas-store v0.0.0-20211103033307-99b1a9930438 h1:GnOaqbs99QFxUkHqC8y4OJDhGOjMvYZkQ3kSWUELIDo=
 github.com/kirigaikabuto/category-nurzhas-store v0.0.0-20211103033307-99b1a9930438/go.mod h1:pYkwDukEmJRF4gTv+RQO9nN0o/3a8rNFN4fVFR5Mwy0=
+github.com/kirigaikabuto/category-nurzhas-store v0.0.0-20211103053841-baaf6ff9ad96 h1:/H303ViYZqAVU5a7cde3st+pHwu0R3qIiiPIX2HowiI=
+github.com/kirigaikabuto/category-nurzhas-store v0.0.0-20211103053841-baaf6ff9ad96/go.mod h1:pYkwDukEmJRF4gTv+RQO9nN0o/3a8rNFN4fVFR5Mwy0=
 github.com/kirigaikabuto/setdata-common v1.0.1-0.20210922163006-90429744f890 h1:5NklnIn4sb+9eR9E1kCEHFaEDroraWOfBXKQNjgYFI0=
 github.com/kirigaikabuto/setdata-common v1.0.1-0.20210922163006-90429744f890/go.mod h1:EcsbBKzPC1NGpm1iADkalbcxTuw7M8ChtXfC+SFBcOM=
 github.com/konsorten/go-windows-terminal-sequences v0.0.0-20180402223658-b729f2633dfe h1:CHRGQ8V7OlCYtwaKPJi3iA7J+YdNKdo8j7nG5IgDhjs=

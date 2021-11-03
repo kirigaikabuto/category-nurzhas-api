@@ -4,6 +4,6 @@ go 1.13
 
 require (
 	github.com/gorilla/mux v1.8.1-0.20210914121219-3cf0d013e53d // indirect
-	github.com/kirigaikabuto/category-nurzhas-store v0.0.0-20211103033307-99b1a9930438 // indirect
+	github.com/kirigaikabuto/category-nurzhas-store v0.0.0-20211103053841-baaf6ff9ad96 // indirect
 	github.com/kirigaikabuto/setdata-common v1.0.1-0.20210922163006-90429744f890 // indirect
 )
