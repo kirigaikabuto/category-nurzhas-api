@@ -74,11 +74,18 @@ func main() {
 		log.Fatal(err)
 		return
 	}
+	orderStore, err := category_nurzhas_store.NewPostgresOrdersStore(postgreConfig)
+	if err != nil {
+		log.Fatal(err)
+		return
+	}
 	telegramBotService := category_nurzhas_store.NewTelegramService("", telegramBotStore, chatIdsStore)
 	if err != nil {
 		log.Fatal(err)
 		return
 	}
+	orderService := category_nurzhas_store.NewOrderService(orderStore, telegramBotService)
+	orderHttpEndpoints := category_nurzhas_store.NewOrderHttpEndpoints(setdata_common.NewCommandHandler(orderService))
 	telegramHttpEndpoints := category_nurzhas_store.NewTelegramBotHttpEndpoints(setdata_common.NewCommandHandler(telegramBotService))
 	service := category_nurzhas_store.NewCategoryService(store, s3)
 	ch := setdata_common.NewCommandHandler(service)
@@ -98,6 +105,8 @@ func main() {
 	router.Methods("GET").Path("/telegram").HandlerFunc(telegramHttpEndpoints.MakeListTelegramBotEndpoint())
 	router.Methods("POST").Path("/telegram/message").HandlerFunc(telegramHttpEndpoints.MakeSendMessageEndpoint())
 
+	router.Methods("POST").Path("/order").HandlerFunc(orderHttpEndpoints.MakeCreateOrderEndpoint())
+	router.Methods("GET").Path("/order").HandlerFunc(orderHttpEndpoints.MakeListOrderEndpoint())
 	fmt.Println("api is running on port " + port)
 	err = http.ListenAndServe(":"+port, router)
 	if err != nil {
